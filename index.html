@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Özel ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background: #090a0f;
+            background: radial-gradient(circle at center, #1b1e2e 0%, #08090d 100%);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        /* Arka plan parlama efektleri */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #ff0055, #7928ca);
+            filter: blur(120px);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulse 6s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.2; }
+            100% { transform: scale(1.2); opacity: 0.4; }
+        }
+
+        /* Ana Kart */
+        .card {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 420px;
+            padding: 35px 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .heart-icon {
+            font-size: 50px;
+            display: inline-block;
+            margin-bottom: 15px;
+            animation: beat 1.2s infinite;
+            filter: drop-shadow(0 0 10px #ff2a6d);
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        p.subtext {
+            font-size: 0.95rem;
+            color: #b3b3b3;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            min-height: 50px;
+        }
+
+        /* Şık Buton */
+        .btn {
+            background: linear-gradient(135deg, #ff0055 0%, #7928ca 100%);
+            border: none;
+            padding: 14px 32px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 0, 85, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Kalp Yağmuru Efekti */
+        .floating-heart {
+            position: absolute;
+            pointer-events: none;
+            animation: floatUp linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Mesaj Adım Göstergesi */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: #ff758c;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow"></div>
+
+    <div class="card" id="mainCard">
+        <div class="badge" id="stepBadge">Sana Bir Not</div>
+        <div class="heart-icon" id="icon">💖</div>
+        <h1 id="title">Aramızdaki Mesafeler...</h1>
+        <p class="subtext" id="desc">
+            Haritalarda kilometreler görünebilir ama kalbimde tek bir milim bile uzak değilsin.
+        </p>
+        <button class="btn" onclick="nextStep()" id="actionBtn">Devam Et ✨</button>
+    </div>
+
+    <script>
+        const steps = [
+            {
+                badge: "Hissedilen",
+                icon: "✨",
+                title: "Her An Aklımdasın",
+                desc: "Uzakta olsak da her şarkıda, her güzel anda aklıma ilk gelen şey senin gülüşün oluyor.",
+                btn: "Devam Et ❤️"
+            },
+            {
+                badge: "Bizim Hikayemiz",
+                icon: "🚀",
+                title: "Geleceğe Doğru",
+                desc: "Yan yana olacağımız, göz göze bakacağımız günlerin heyecanı bile seni sevmeme yetiyor.",
+                btn: "Son Sürprizi Aç 🎁"
+            },
+            {
+                badge: "Sonsuz Sevgimle",
+                icon: "👑",
+                title: "İyi Ki Hayatımdasın!",
+                desc: "Meyra'm... Mesafeler biter, yollar tükenir ama sana olan sevgim hiç bitmez. Seni çok seviyorum!",
+                btn: "Kalpleri Yağdır! ❤️"
+            }
+        ];
+
+        let currentStep = 0;
+
+        function nextStep() {
+            if (currentStep < steps.length) {
+                const data = steps[currentStep];
+                
+                // Kartı hafif küçültüp büyütme animasyonu
+                const card = document.getElementById('mainCard');
+                card.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    document.getElementById('stepBadge').innerText = data.badge;
+                    document.getElementById('icon').innerText = data.icon;
+                    document.getElementById('title').innerText = data.title;
+                    document.getElementById('desc').innerText = data.desc;
+                    document.getElementById('actionBtn').innerText = data.btn;
+                    card.style.transform = 'scale(1)';
+                }, 200);
+
+                // Ekrandan birkaç kalp uçur
+                burstHearts(5);
+                currentStep++;
+            } else {
+                // Final adımı: Sürekli kalp yağmuru
+                setInterval(() => {
+                    createFloatingHeart();
+                }, 150);
+                
+                document.getElementById('actionBtn').innerText = "Seni Çok Seviyorum ✨";
+                document.getElementById('actionBtn').style.background = "linear-gradient(135deg, #11998e, #38ef7d)";
+            }
+        }
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            
+            const icons = ['❤️', '💖', '✨', '💕', '🌸'];
+            heart.innerText = icons[Math.floor(Math.random() * icons.length)];
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        function burstHearts(count) {
+            for(let i = 0; i < count; i++) {
+                setTimeout(createFloatingHeart, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
