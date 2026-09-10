@@ -3,243 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sana Özel ✨</title>
+    <title>Sadece Senin İçin... ❤️</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
         }
 
         body {
             height: 100vh;
-            background: #090a0f;
-            background: radial-gradient(circle at center, #1b1e2e 0%, #08090d 100%);
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #03001e;
+            background: linear-gradient(135deg, #050515 0%, #12002b 50%, #1a001a 100%);
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
             color: #fff;
         }
 
-        /* Arka plan parlama efektleri */
-        .glow {
+        /* Yıldızlı Arka Plan Canvas */
+        #starsCanvas {
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(45deg, #ff0055, #7928ca);
-            filter: blur(120px);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: pulse 6s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.8); opacity: 0.2; }
-            100% { transform: scale(1.2); opacity: 0.4; }
-        }
-
-        /* Ana Kart */
-        .card {
-            position: relative;
-            z-index: 10;
-            width: 90%;
-            max-width: 420px;
-            padding: 35px 25px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 24px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            text-align: center;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .heart-icon {
-            font-size: 50px;
-            display: inline-block;
-            margin-bottom: 15px;
-            animation: beat 1.2s infinite;
-            filter: drop-shadow(0 0 10px #ff2a6d);
-        }
-
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        h1 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-        }
-
-        p.subtext {
-            font-size: 0.95rem;
-            color: #b3b3b3;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            min-height: 50px;
-        }
-
-        /* Şık Buton */
-        .btn {
-            background: linear-gradient(135deg, #ff0055 0%, #7928ca 100%);
-            border: none;
-            padding: 14px 32px;
-            color: white;
-            font-weight: 600;
-            font-size: 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4);
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 0, 85, 0.6);
-        }
-
-        .btn:active {
-            transform: translateY(1px);
-        }
-
-        /* Kalp Yağmuru Efekti */
-        .floating-heart {
-            position: absolute;
-            pointer-events: none;
-            animation: floatUp linear forwards;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
         }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg) scale(0.5);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-20vh) rotate(360deg) scale(1.2);
-                opacity: 0;
-            }
+        /* Ana Konteyner */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 450px;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8),
+                        inset 0 0 20px rgba(255, 255, 255, 0.05);
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
-        /* Mesaj Adım Göstergesi */
-        .badge {
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            font-size: 0.75rem;
-            color: #ff758c;
-            margin-bottom: 10px;
-            text-transform: uppercase;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Başlık & İsim */
+        .header-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff007f, #ff758c, #ff7eb3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
             letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: #d1d1d1;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        /* Canlı Zaman Sayacı Box */
+        .counter-box {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            margin-bottom: 25px;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .time-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ff4da6;
+        }
+
+        .time-label {
+            font-size: 0.65rem;
+            color: #aaa;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* Dönen Plak Görsel Efekti */
+        .music-player {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px 15px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .vinyl {
+            width: 35px;
+            height: 35px;
+            background: radial-gradient(circle, #000 30%, #333 31%, #111 60%, #000 100%);
+            border-radius: 50%;
+            border: 2px solid #ff007f;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .song-info {
+            text-align: left;
+            font-size: 0.8rem;
+        }
+
+        .song-title {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .song-artist {
+            color: #888;
+            font-size: 0.7rem;
+        }
+
+        /* Kart İçeriği */
+        .content-card {
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .message-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #f0f0f0;
+            font-weight: 400;
+        }
+
+        /* Özel Buton */
+        .custom-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #ff0055, #ff5078);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(255, 0, 85, 0.6);
+        }
+
+        .custom-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Uçuşan Kalpler */
+        .heart-particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 100;
+            animation: floatAndFade 4s ease-in forwards;
+        }
+
+        @keyframes floatAndFade {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.8) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1.5) rotate(360deg);
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow"></div>
+    <canvas id="starsCanvas"></canvas>
 
-    <div class="card" id="mainCard">
-        <div class="badge" id="stepBadge">Sana Bir Not</div>
-        <div class="heart-icon" id="icon">💖</div>
-        <h1 id="title">Aramızdaki Mesafeler...</h1>
-        <p class="subtext" id="desc">
-            Haritalarda kilometreler görünebilir ama kalbimde tek bir milim bile uzak değilsin.
-        </p>
-        <button class="btn" onclick="nextStep()" id="actionBtn">Devam Et ✨</button>
+    <div class="container">
+        <h1 class="header-title">Meyra & Ben</h1>
+        <p class="subtitle">Aramızdaki Her Bir Saniyenin Anısına ✨</p>
+
+        <!-- Canlı Sayac (Tarihi istediğin gibi ayarlayabilirsin) -->
+        <div class="counter-box">
+            <div class="time-unit">
+                <span class="time-value" id="days">00</span>
+                <span class="time-label">Gün</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-value" id="hours">00</span>
+                <span class="time-label">Saat</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-value" id="minutes">00</span>
+                <span class="time-label">Dakika</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-value" id="seconds">00</span>
+                <span class="time-label">Saniye</span>
+            </div>
+        </div>
+
+        <!-- Müzik Detayı -->
+        <div class="music-player">
+            <div class="vinyl"></div>
+            <div class="song-info">
+                <div class="song-title">Bizim Şarkımız 🎵</div>
+                <div class="song-artist">Kalbimden Sana...</div>
+            </div>
+        </div>
+
+        <!-- İnteraktif Mesaj Alanı -->
+        <div class="content-card">
+            <p class="message-text" id="msgArea">
+                Ekrana her dokunduğunda sana olan sevgimin başka bir parçasını göreceksin... Başlamaya hazır mısın? ❤️
+            </p>
+        </div>
+
+        <button class="custom-btn" onclick="nextMessage()" id="mainBtn">Dokun ve Başla ✨</button>
     </div>
 
     <script>
-        const steps = [
-            {
-                badge: "Hissedilen",
-                icon: "✨",
-                title: "Her An Aklımdasın",
-                desc: "Uzakta olsak da her şarkıda, her güzel anda aklıma ilk gelen şey senin gülüşün oluyor.",
-                btn: "Devam Et ❤️"
-            },
-            {
-                badge: "Bizim Hikayemiz",
-                icon: "🚀",
-                title: "Geleceğe Doğru",
-                desc: "Yan yana olacağımız, göz göze bakacağımız günlerin heyecanı bile seni sevmeme yetiyor.",
-                btn: "Son Sürprizi Aç 🎁"
-            },
-            {
-                badge: "Sonsuz Sevgimle",
-                icon: "👑",
-                title: "İyi Ki Hayatımdasın!",
-                desc: "Meyra'm... Mesafeler biter, yollar tükenir ama sana olan sevgim hiç bitmez. Seni çok seviyorum!",
-                btn: "Kalpleri Yağdır! ❤️"
-            }
+        // --- 1. Yıldızlı Arka Plan Efekti ---
+        const canvas = document.getElementById('starsCanvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        for(let i = 0; i < 120; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                alpha: Math.random(),
+                speed: Math.random() * 0.02 + 0.005
+            });
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+                ctx.fill();
+
+                star.alpha += star.speed;
+                if (star.alpha > 1 || star.alpha < 0) {
+                    star.speed = -star.speed;
+                }
+            });
+            requestAnimationFrame(drawStars);
+        }
+        drawStars();
+
+        // --- 2. İlişki / Birliktelik Zaman Sayacı ---
+        // Buradaki tarihi çıkmaya başladığınız tam gün/saat ile değiştirebilirsin (Yıl, Ay-1, Gün, Saat, Dk)
+        const startDate = new Date(2026, 7, 28, 0, 0, 0); // Örnek tarih
+
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+            document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+            document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+            document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+        }
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        // --- 3. Mesaj Akışı & Etkileşim ---
+        const messages = [
+            "Aramızdaki mesafeler haritada ne kadar uzak görünürse görünsün, kalbimin attığı her yerde sen varsın. 🌌",
+            "Uzak mesafeden sevmektir asıl emek... Görmeden, dokunmadan sadece hissettiklerinle birini dünyan yapmak. 💫",
+            "Gözlerimi kapattığım an yanındayım. Yan yana geleceğimiz o ilk gün, dünyadaki tüm yollara değecek. ❤️",
+            "Meyra'm... Hayatımda olduğun, beni böyle güzel hissettirdiğin her saniye için iyi ki varsın! 👑",
+            "Seni her gün daha büyük bir aşkla, eksilmeden, katlanarak seviyorum! İYİ Kİ BİZ! 🎉💖"
         ];
 
-        let currentStep = 0;
+        let msgIndex = 0;
 
-        function nextStep() {
-            if (currentStep < steps.length) {
-                const data = steps[currentStep];
-                
-                // Kartı hafif küçültüp büyütme animasyonu
-                const card = document.getElementById('mainCard');
-                card.style.transform = 'scale(0.95)';
-                
-                setTimeout(() => {
-                    document.getElementById('stepBadge').innerText = data.badge;
-                    document.getElementById('icon').innerText = data.icon;
-                    document.getElementById('title').innerText = data.title;
-                    document.getElementById('desc').innerText = data.desc;
-                    document.getElementById('actionBtn').innerText = data.btn;
-                    card.style.transform = 'scale(1)';
-                }, 200);
+        function nextMessage() {
+            const msgArea = document.getElementById('msgArea');
+            const btn = document.getElementById('mainBtn');
 
-                // Ekrandan birkaç kalp uçur
-                burstHearts(5);
-                currentStep++;
-            } else {
-                // Final adımı: Sürekli kalp yağmuru
-                setInterval(() => {
-                    createFloatingHeart();
-                }, 150);
-                
-                document.getElementById('actionBtn').innerText = "Seni Çok Seviyorum ✨";
-                document.getElementById('actionBtn').style.background = "linear-gradient(135deg, #11998e, #38ef7d)";
-            }
-        }
-
-        function createFloatingHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
-            
-            const icons = ['❤️', '💖', '✨', '💕', '🌸'];
-            heart.innerText = icons[Math.floor(Math.random() * icons.length)];
-            
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
-            
-            document.body.appendChild(heart);
+            // Yazı değişim efekti
+            msgArea.style.opacity = '0';
+            msgArea.style.transform = 'translateY(10px)';
 
             setTimeout(() => {
-                heart.remove();
-            }, 5000);
+                if (msgIndex < messages.length) {
+                    msgArea.innerText = messages[msgIndex];
+                    btn.innerText = "Devam Et ❤️";
+                    msgIndex++;
+                } else {
+                    msgArea.innerHTML = "<b style='color:#ff007f; font-size:1.2rem;'>Sonsuza Kadar Sen! ✨</b><br>Mesafeler biter, aşkımız kalır.";
+                    btn.innerText = "Sonsuz Kalp Yağmuru! 💖";
+                    startHeartRain();
+                }
+                msgArea.style.opacity = '1';
+                msgArea.style.transform = 'translateY(0)';
+            }, 300);
+
+            // Ekrandan kalpler fırlat
+            createBurstHearts(8);
         }
 
-        function burstHearts(count) {
-            for(let i = 0; i < count; i++) {
-                setTimeout(createFloatingHeart, i * 100);
+        // --- 4. Kalp Efektleri ---
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            const shapes = ['❤️', '💖', '✨', '🌸', '💫'];
+            heart.innerText = shapes[Math.floor(Math.random() * shapes.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        function createBurstHearts(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(createHeart, i * 80);
             }
+        }
+
+        function startHeartRain() {
+            setInterval(createHeart, 100);
         }
     </script>
 </body>
 </html>
+
